@@ -1,0 +1,22 @@
+baseURL = "https://bigkucha.github.com"
+languageCode = "en-us"
+title = "大裤衩子的博客"
+buildDrafts = true
+enableEmoji = true
+theme="hugo_theme_bigkucha"
+
+[[menu.nav]]
+    name = "Go"
+    identifier = "go"
+    url = "/go/"
+    weight = 2
+[[menu.nav]]
+    name = "Git"
+    identifier = "git"
+    weight = 3
+    url = "/git/"
+[[menu.nav]]
+    name = "Yii"
+    identifier = "yii"
+    weight = 4
+    url = "/yii/"

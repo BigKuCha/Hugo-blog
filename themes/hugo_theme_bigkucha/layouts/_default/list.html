@@ -1,0 +1,81 @@
+{{ define "title" }}
+{{ .Params.title }}
+{{ end }}
+
+{{ define "main" }}
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="row">
+            <div class="row">
+                {{ range (.Paginate .Pages).Pages }}
+                <div class="col-sm-12 col-md-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                            <p>
+                                {{ .Summary }}
+                                {{ if .Truncated }}
+                                ...
+                                {{ end }}
+                                <a class="pull-right" href="{{ .RelPermalink }}">Read More</a>
+                            </p>
+                            <p>
+                                {{ range .Params.tags }}
+                                <span class="label label-success">{{ . }}</span>
+                                {{ end }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        <div class="row">
+            共{{ .Paginator.NumberOfElements }}篇文章
+            {{ if .Paginator.HasPrev }}
+            <a href="{{ .Paginator.Prev.URL }}">上一页</a>
+            {{ end }}
+            {{ if .Paginator.HasNext }}
+            <a href="{{ .Paginator.Next.URL }}">下一页</a>
+            {{ end }}
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 " style="padding-left: 20px">
+        {{ range $key, $item := .Site.Taxonomies }}
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ $key | upper }}</div>
+                <div class="panel-body">
+                    {{ range first 10 $item.ByCount }}
+                    <a class="label label-info  " href="{{ $.Site.BaseURL }}/{{ $key }}/{{ .Name }}">{{ .Name }}</a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+
+
+{{ define "main2" }}
+<div>
+    {{ range (.Paginate .Pages).Pages }}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}--{{ .Params.categories }}</a>
+        {{ .Summary }}
+        {{ if .Truncated }}
+        <div class="read-more-link">
+            <a href="{{ .RelPermalink }}">Read More…</a>
+        </div>
+        {{ end }}
+        {{ range .Params.tags }}
+        <h1>{{ . }}</h1>
+        {{ end }}
+    </li>
+    {{ end }}
+
+</div>
+{{ end }}
+
