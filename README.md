@@ -4,7 +4,7 @@ BigKuCha's Blog
 New article
 ---
 ```
-hugo new git/xx.md
+hugo new category/xx.md
 ```
 
 Preview
@@ -12,5 +12,14 @@ Preview
 
 ```
 hugo server --theme=hugo_theme_robust --buildDrafts 
+```
+
+Publish
+---
+```git
+$ hugo
+$ cd public
+$ git commit -a -m ""
+$ git push origin master
 ```
 
